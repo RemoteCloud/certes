@@ -2,19 +2,20 @@
   <Import Project="../../misc/certes.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0;net461;</TargetFrameworks>
+    <TargetFrameworks>net6.0;netstandard2.0;net461;</TargetFrameworks>
     <Authors>Certes Contributors</Authors>
     <Company />
     <Product>Certes ACME Client</Product>
     <Title>$(Product)</Title>
-    <Description>A client implementation for the Automated Certificate Management Environment (ACME) protocol.</Description>
+    <Description>.NET6 Support - A client implementation for the Automated Certificate Management Environment (ACME) protocol.</Description>
     <PackageTags>Certes;letsencrypt;ACME;HTTPS;SSL;Certificate;dotnettool</PackageTags>
-    <PackageProjectUrl>https://github.com/fszlin/certes</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/RemoteCloud/certes</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/fszlin/certes</RepositoryUrl>
+    <RepositoryUrl>https://github.com/RemoteCloud/certes</RepositoryUrl>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Certes.xml</DocumentationFile>
     <PackageIcon>logo.png</PackageIcon>
+    <PackageReleaseNotes>.NET6 Support</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
