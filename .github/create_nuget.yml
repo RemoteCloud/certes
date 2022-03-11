@@ -1,0 +1,42 @@
+name: NuGet Generation
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/Certes
+        
+    name: Update NuGet 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+ 
+        # CR_PAT token used to READ other packages in the organization. remotecloud/GITHUB_TOKEN does not work -.-
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+          source-url: https://nuget.pkg.github.com/RemoteCloud/index.json
+          owner: jwillmer
+          # owner: remotecloud
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.CR_PAT }}  
+          # NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        
+      - name: Build
+        run: dotnet build --configuration Release
+        
+      - name: Pack
+        run: dotnet pack Certes.csproj --output nuget-package --configuration Release
+        
+        # --no-symbols true is a bug workaround. In the future --no-symbols should just work
+      - name: Push to GitHub registry
+        run: dotnet nuget push ./nuget-package/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/RemoteCloud/index.json --skip-duplicate --no-symbols true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
