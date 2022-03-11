@@ -1,3 +1,7 @@
+**This version is a clone of the original with added .NET 6 support. As soon as the original project supports .NET 6 this repository will be removed.**
+
+---
+
 # Certes
 
 Certes is an [ACME](https://en.wikipedia.org/wiki/Automated_Certificate_Management_Environment)
